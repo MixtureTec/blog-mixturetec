@@ -1,0 +1,14 @@
+{
+  "name": "mixturetec",
+  "version": "1.0.0",
+  "description": "Blog de integracion de tecnologias, para el desarrollo de productos completos.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mixturetec",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
