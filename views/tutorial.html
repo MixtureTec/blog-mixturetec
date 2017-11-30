@@ -53,48 +53,36 @@
 			</header>
 			
 			<!-- Post Content -->
-			<div class="main px-5">
+			<div class="main px-3">
 				<!-- Tutorial -->
 				<article id="tutorial">
-					<div class="container">
-						
+					<div class="container" id="{{tutorial.tag}}">
+						{% include tutorial.main_archivo %}
+						{% for archivo in tutorial.sub_archivos %}
+							
+							<div class="nover subtutorial {{archivo.tecnologia}}" id="{{ archivo.tag }}">
+								{% include archivo.archivo %}
+							</div>
 
-						{% include tutorial.archivo %}
+							<button type="button" class="mb-2 btn btn-block btn_tuto {{archivo.tecnologia}}" id="boton_{{archivo.tag}}">{{archivo.titulo}}</button>
+						{% endfor %}	
+					</div>
 
-					</div>  <!-- container -->       
 				</article>      
 				<!-- Aside -->      
 				<div class="notutorial" id="aside">
 					<div class="bootstrap-vertical-nav">
 						
 						<div class="card">
-							<div class="card-header">
-			                	<a href="">Instalaciones Iniciales</a>
+							<div class="card-header {{tutorial.tecnologia}} menu_father" id="menu_{{tutorial.tag}}">
+								<i class="fa fa-plus desglose " aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<span class="">{{tutorial.titulo}}</span>
 			  				</div>
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">
-									<a href="">Que es Arduino</a>
-								</li>
-								<li class="list-group-item">
-									<a href="">Programacion</a>
-								</li>
-								<li class="list-group-item">
-									<a href="">Shield Ethernet</a>
-								</li>
-							</ul>
-							<div class="card-header">
-			                	<a href="">Instalaciones Iniciales</a>
-			  				</div>
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">
-									<a href="">Que es Arduino</a>
-								</li>
-								<li class="list-group-item">
-									<a href="">Programacion</a>
-								</li>
-								<li class="list-group-item">
-									<a href="">Shield Ethernet</a>
-								</li>
+							<ul class="list-group list-group-flush nover">
+								{% for archivo in tutorial.sub_archivos %}
+									<li class="list-group-item {{archivo.tecnologia}} menu_child" id="menu_{{archivo.tag}}">
+										{{archivo.titulo}}
+									</li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
@@ -150,9 +138,10 @@
 		<script src="/js/bootstrap.bundle.min.js"></script>
 
 		<script type="text/javascript">
+            var prsion_desgloce = false; 
+
 			$(document).ready(function(){
 				$( window ).scroll(function() {
-					console.log($(window).scrollTop())
 					if($(window).scrollTop() > 300){
 						$('.bootstrap-vertical-nav').css('marginTop','64px')
 					}else{
@@ -160,8 +149,79 @@
 						$('.bootstrap-vertical-nav').css('marginTop',margin)
 					}
 				});
+			});
+
+
+			$('.btn_tuto').on('click',function (e) {
+				var identificador = '#'+ this.id.slice(6);
+				if($(identificador).hasClass('nover')){
+					mostrar(identificador);
+					$(this).attr('value',this.innerHTML);
+					this.innerHTML = "Ocultar";
+				}
+				if($(identificador).hasClass('ver')){
+					ocultar(identificador);
+					this.innerHTML = $(this).attr('value');
+				}
 				
 			});
+
+			$('.menu_father').on('click',function (e) {
+				if(prsion_desgloce == false){
+					identificador = "#" + $( this ).get(0).id.slice(5);	
+					console.log(identificador)
+					var $target = $(identificador);
+					   
+				    $('html, body').stop().animate({
+				        'scrollTop': $target.offset().top - 50
+				    }, 900, 'swing', function () {
+				        window.location.hash = identificador;
+				    });
+				}
+			});
+
+			
+
+			$('.desglose').on('click',function (e) {
+				prsion_desgloce = true
+				padre = "#" + $( this ).parent().get(0).id;
+				identificador = padre + " + ul";
+				icono = padre + " i"
+				if($(identificador).hasClass('nover')){
+					mostrar(identificador);
+					$(icono).removeClass('fa-plus')
+					$(icono).addClass('fa-minus')
+				}
+				if($(identificador).hasClass('ver')){
+					ocultar(identificador);
+					$(icono).removeClass('fa-minus')
+					$(icono).addClass('fa-plus')
+				}
+				setTimeout(function(){ 
+					prsion_desgloce = false;
+				}, 500);
+				
+			});
+
+
+
+			function mostrar(identificador){
+				$(identificador).removeClass('nover');
+				$(identificador).addClass('mostrar');
+				setTimeout(function(){ 
+					$(identificador).removeClass('mostrar');
+					$(identificador).addClass('ver');
+				}, 250);
+			}
+			function ocultar(identificador){
+				$(identificador).removeClass('ver');
+				$(identificador).addClass('mostrar');
+				setTimeout(function(){ 
+					$(identificador).removeClass('mostrar');
+					$(identificador).addClass('nover');
+				}, 500);
+			}
+
 		</script>
 
 	</body>

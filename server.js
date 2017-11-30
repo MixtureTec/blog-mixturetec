@@ -36,18 +36,34 @@ server.get('/tutorial/:nombre/',function(req,res){
 	console.log(nombre)
 	if (nombre == 'arduino') {
 		var tutorial = {
+			url: 'arduino',
 			titulo: "¿Qué es arduino?",
 			tecnologia: 'electronica',
-			archivo: 'arduino.html'	,
-			logo: 'logo-arduino.png'
+			tag: 'que_es_arduino',
+			main_archivo: './tutoriales/arduino/que_es_arduino.html', 
+			sub_archivos: [
+				{
+					titulo: '¿Por qué usar Arduino?',
+					tag: 'por_que_usar_arduino',
+					archivo: './tutoriales/arduino/por_que_usar_arduino.html',
+					tecnologia: 'electronica',
+				},
+				{
+					titulo: '¿Qué se puede hacer con Arduino?',
+					tag: 'que_se_puede_hacer_con_arduino',
+					archivo: './tutoriales/arduino/que_se_puede_hacer_con_arduino.html',
+					tecnologia: 'electronica',
+				},
+			],			
+			logo: 'logo-arduino.png',
 		};
 		res.render('tutorial.html',  { tutorial:tutorial });	
 	}else if(nombre == 'servidor') {
 		var tutorial = {
 			titulo: "Mi primer servidor web",
 			tecnologia: 'web',
-			archivo: 'servidor.html',
-			logo: 'logo-node.png'	
+			archivo: ['servidor.html'],
+			logo: 'logo-node.png',	
 		};
 		res.render('tutorial.html',  { tutorial:tutorial });
 	}
