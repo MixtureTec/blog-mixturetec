@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Mixture Tec | {{ tutorial.titulo }}</title>
+
+		<link rel="stylesheet" href="/css/bootstrap-reboot.css" />
+		<link rel="stylesheet" href="/css/bootstrap_escentials.css" /> 	
+     	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    	<link rel="stylesheet" href="/css/tutorial.css"/>
+   		<link href="/css/clean-blog.css" rel="stylesheet">
+	
+	</head>
+
+	<body>
+		<div class="notutorial">
+			<!-- Navigation -->
+			<nav class="{{tutorial.tecnologia}} navbar sticky-top navbar-expand-lg navbar-dark ">
+  				<a class="navbar-brand text-white" href="/" >
+	    			<img src="img/logo_dark.png" width="40" height="30" class="d-inline-block align-top" alt="">
+	    			<b>MixtureTec</b>
+	  			</a>
+  				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    				<span class="navbar-toggler-icon"></span>
+  				</button>
+  				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    				<div class="navbar-nav">
+					    <a class="nav-item nav-link" href="/">Inicio</a>
+					    <a class="nav-item nav-link" href="#">Proyecto</a>
+    				</div>
+  				</div>
+			</nav>
+
+			
+
+			<!-- Page Header -->
+			<header class="{{tutorial.tecnologia}} px-5 d-flex justify-content-center align-items-start " id="header_post">      
+				<div class="pt-2 d-flex align-items-center">
+					<div >
+						<img src="/img/{{ tutorial.logo }}" style="width: 200px" >
+					</div>
+					<div>
+						<h1>{{ tutorial.titulo }}</h1>
+					</div>	
+				</div>
+								       
+			</header>
+			
+			<!-- Post Content -->
+			<div class="main px-5">
+				<!-- Tutorial -->
+				<article id="tutorial">
+					<div class="container">
+						
+
+						{% include tutorial.archivo %}
+
+					</div>  <!-- container -->       
+				</article>      
+				<!-- Aside -->      
+				<div class="notutorial" id="aside">
+					<div class="bootstrap-vertical-nav">
+						
+						<div class="card">
+							<div class="card-header">
+			                	<a href="">Instalaciones Iniciales</a>
+			  				</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									<a href="">Que es Arduino</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Programacion</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Shield Ethernet</a>
+								</li>
+							</ul>
+							<div class="card-header">
+			                	<a href="">Instalaciones Iniciales</a>
+			  				</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									<a href="">Que es Arduino</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Programacion</a>
+								</li>
+								<li class="list-group-item">
+									<a href="">Shield Ethernet</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div> 
+			</div> 
+			<!-- Footer -->
+			<footer class="pt-5">
+				<div class="container">
+					<div class="row d-flex flex-column align-items-center justify-content-center">
+						<div class="my-4">
+							<ul class="networks d-flex justify-content-center">
+								<li class="list-inline-item">
+									<a href="https://twitter.com/mixture_tec" target="_blank">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</li>
+								<li class="list-inline-item">
+									<a href="https://www.facebook.com/MixtureTec-762539413932563/" target="_blank">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</li>
+								<li class="list-inline-item">
+									<a href="https://www.youtube.com/channel/UCwxiSDl4YfILcqR01IM7P_Q" target="_blank">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</li>
+								<li class="list-inline-item">
+									<a href="https://github.com/MixtureTec" target="_blank">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-github fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</li>
+							</ul>
+							<p class="copyright text-muted">Copyright &copy; MixtureTec 2017</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>  
+		<!-- Bootstrap core JavaScript -->
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/bootstrap.bundle.min.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$( window ).scroll(function() {
+					console.log($(window).scrollTop())
+					if($(window).scrollTop() > 300){
+						$('.bootstrap-vertical-nav').css('marginTop','64px')
+					}else{
+						var margin = $(window).scrollTop()*(64-430)/300+430 + 'px';
+						$('.bootstrap-vertical-nav').css('marginTop',margin)
+					}
+				});
+				
+			});
+		</script>
+
+	</body>
+
+</html>

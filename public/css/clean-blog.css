@@ -1,0 +1,218 @@
+body{
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #292b2c;
+    background-color: #fff;
+}
+
+/*header_main*/
+
+.header_main {
+  height: 100vh;
+  color: white;
+  text-shadow: 0px 0px 18px #000;
+  background: linear-gradient(to bottom, rgba(52,58,64,0.8) 0%, rgba(255,255,255,0.5) 100%),url('http://1.bp.blogspot.com/-7Ag18Qq2_E4/TfaelLJVbMI/AAAAAAAAAAk/mQLtMiEZDAs/s1600/ciudad-robot.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.header_main_subtitle {
+  text-align: center;
+  max-width: 60%;
+  font-size: 2em;
+}
+
+.header_main_logo {
+  width: 30%;
+}
+
+.header_main_title {
+  font-size: 4em;
+}
+
+@media (max-width: 576px) {
+  .header_main_title {
+    font-size: 2em;
+  }
+  .header_main_subtitle {
+     font-size: 1em;
+  }
+}
+
+@media (max-width: 768px) {
+  .header_main_title {
+    font-size: 2.5em;
+  }
+  .header_main_subtitle {
+     font-size: 1em;
+  }
+}
+
+@media (max-width: 992px) { 
+  .header_main_title {
+    font-size: 3em;
+  }
+  .header_main_subtitle {
+     font-size: 1.5em;
+  }
+}
+
+
+/*tecnologias_main*/
+
+#Tecnologias.container {
+  min-height: 100vh;
+  background-color: white;
+}
+
+.card-deck .card {
+   border: 0;
+   max-width: 400px;
+}  
+
+.card-deck .card-text {
+  font-size: 16px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .card-deck .card-text {
+    padding: 1em;
+  }
+}
+
+.card-deck > .card > .card-block > .card-title {
+  text-align: center;
+}
+
+.card-deck > .card > .card-img-top {
+  width: 155px;
+  height: 122px;
+}
+
+/*Tutoriales*/
+
+#Tutoriales.contenedor {
+  min-height: 100vh;
+  background-color: #2980b9;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#Tutoriales.contenedor .card-img-top {
+  width: 100%;
+}
+
+#Tutoriales .card {
+  margin: 10px;
+  border: 1px solid white;
+}
+
+
+#Tutoriales.contenedor > h1 {
+  color: white;
+  text-align: center;
+}
+
+/*Proyectos*/
+
+
+#Proyectos.container {
+  background-color: white;
+  min-height: 100vh;
+}
+
+#Proyectos .card {
+  margin: 10px;
+}
+
+#Proyectos .card-img-top {
+}
+
+/*footer*/
+
+.list-inline-item {
+  list-style:none;
+}
+
+
+#header_post{
+  height: 330px;
+}
+
+#header_post h1 {
+
+}
+
+nav a {
+  -webkit-transition: all 0.5s ease;
+}
+
+
+.container > h1 {
+  text-align: center;
+}
+
+
+
+footer .fa-stack {
+  color: black;
+} 
+
+.bootstrap-vertical-nav {
+  display: none;
+}
+
+@media (min-width: 996px) {
+    .bootstrap-vertical-nav {
+      display: block;
+      width: 200px;
+      margin-top: 430px;
+      margin-left: 4rem;
+      position: fixed;
+      top: 0px;
+      right: 30px;
+      bottom: 0px;
+      width: 200px;
+    }
+}
+
+div.main {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+@media (min-width: 996px) {
+  div.main {
+    padding-left: 5rem;
+    padding-right: 3rem;
+  }
+}
+
+.networks {
+  padding: 0;
+  text-align: center;
+
+}
+
+nav.electronica {
+  background-color: #15909F; !important
+}
+
+header.electronica {
+  background: linear-gradient(to bottom, rgba(21,143,159,1) 0%,  rgba(21,143,159,1) 40%, rgba(255,255,255,1) 100%);
+  color: white;
+}
+
+nav.web {
+  background-color: #FFD83C; !important
+  color: #0245FD; !important
+}
+
+header.web {
+  background: linear-gradient(to bottom, rgba(255,216,60,1) 0%, rgba(255,216,60,1) 40%, rgba(255,255,255,1) 100%);
+  color: white;
+}

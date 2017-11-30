@@ -1,0 +1,428 @@
+<h1 id="creación-de-servidor-local">Creación de Servidor local</h1>
+<h2 id="enviar-mensajes-del-servidor-al-navegador">Enviar mensajes del servidor al navegador</h2>
+
+<p>Continuando con las seciones en la carpeta creada en el apartado anterior, vamos a correr un servidor de forma local en nuestros computadores utilizando el framework express.</p>
+
+<p>Para instalar esta dependencia ejecutamos en la terminal. <br>
+<br>
+<code>consola</code></p>
+
+<pre class="prettyprint"><code class=" hljs brainfuck"><span class="hljs-comment">npm</span> <span class="hljs-comment">install</span> <span class="hljs-comment">express</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">save</span></code></pre>
+
+<p>Una vez instalado, creamos un archivo con el nombre server.js en la raíz del directorio.</p>
+
+<p>Puedes usar la consola con el comando touch. <br>
+<br>
+<code>consola</code></p>
+
+<pre class="prettyprint"><code class=" hljs axapta">touch <span class="hljs-keyword">server</span>.js</code></pre>
+
+<p>Lo que veremos a continuación es la estructura que tiene el proyecto hasta el momento. <br>
+<br>
+<code>Estructura del proyecto</code></p>
+
+<pre class="prettyprint"><code class=" hljs avrasm">hackspace
+└─node_modules
+  package<span class="hljs-preprocessor">.json</span>  
+  server<span class="hljs-preprocessor">.js</span></code></pre>
+
+<p>En este archivo copiamos el siguiente código que crea y corre un servidor, el puerto  de comunicaciones 8000, además envía un mensaje al navegador cuando éste realice una petición. <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-pi">
+'use strict'</span>
+
+<span class="hljs-comment">// REQUERIMIENTO DE MODULOS</span>
+
+<span class="hljs-keyword">var</span> express =  <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+
+<span class="hljs-comment">//CONFIGURACIONES</span>
+
+<span class="hljs-comment">// Creación del servidor web con express</span>
+<span class="hljs-keyword">var</span> server = express();
+
+<span class="hljs-comment">// PETICIONES</span>
+
+<span class="hljs-comment">// Cuando exista una petición en el servidor  </span>
+server.get(<span class="hljs-string">'/'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req,res)</span>{</span>
+    res.send(<span class="hljs-string">'Hola mundo'</span>);
+});
+
+<span class="hljs-comment">// INICIAR SERVIDOR</span>
+
+<span class="hljs-comment">// Se corre el servidor en el puerto 8000</span>
+server.listen(<span class="hljs-number">8000</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    console.log(<span class="hljs-string">'El servidor esta escuchando en el puerto '</span>+ <span class="hljs-number">8000</span>)
+});</code></pre>
+
+<p>Como veras nuestro archivo server.js tiene 4 partes. <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// REQUERIMIENTO DE MODULOS</span>
+...
+<span class="hljs-comment">// CONFIGURACIONES</span>
+...
+<span class="hljs-comment">// PETICIONES</span>
+...
+<span class="hljs-comment">// INICIAR SERVIDOR</span>
+...</code></pre>
+
+<p>Se recomiendo mantener este orden para evitar errores.</p>
+
+<p>Guardamos y luego ejecutamos el código en la terminal. <br>
+<br>
+<code>consola</code></p>
+
+<pre class="prettyprint"><code class=" hljs axapta">node <span class="hljs-keyword">server</span></code></pre>
+
+
+En la terminal obtendremos un mensaje que el servidor esta escuchando en el puerto 8000. 
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/escuchandoservidor.PNG">
+</p>
+
+<p>En el navegador escribimos en la casilla de las url la dirección.  <br>
+<br>
+<code>navegador</code></p>
+
+<pre class="prettyprint"><code class=" hljs css"><span class="hljs-tag">localhost</span><span class="hljs-pseudo">:8000</span> </code></pre>
+
+Con esto visualizaremos el mensaje envido en el navegador.
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/holamundo.PNG">
+</p>
+
+<p>Para cancelar la ejecución del servidor utilizamos las teclas Ctrl + C</p>
+
+<p>Con estas simples instrucciones ya hemos creado y probado un servidor.</p>
+
+<h2 id="servir-templates">Servir Templates</h2>
+
+<p>Pero nosotros no queremos mostrar simples mensajes, sino páginas web, podrás descargar una plantilla creada para estas semanas, descárgala <a href="https://github.com/NestorPlasencia/templatehackspace">aquí</a>.</p>
+
+<p>Para visualizar el template abrimos el archivo que se encunetra en la carpeta views especialidades.html <br>
+<br>
+<code>especialidades.html</code></p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/especialidades.PNG">
+</p>
+
+<p>Agregamos las carpetas en la raíz del proyecto, solo extrae las carpetas views y public en el proyecto. <br>
+<br>
+<code>Estructura del proyecto</code></p>
+
+<pre class="prettyprint"><code class=" hljs avrasm">hackspace
+├─node_modules
+├─public
+│ ├─img
+│ │  algoritmos<span class="hljs-preprocessor">.png</span>
+│ │  android<span class="hljs-preprocessor">.png</span>
+│ │  backend<span class="hljs-preprocessor">.png</span>
+│ │  electronica<span class="hljs-preprocessor">.jpg</span>
+│ │  frontend<span class="hljs-preprocessor">.png</span>
+│ ├─js
+│ │  bootstrap<span class="hljs-preprocessor">.min</span><span class="hljs-preprocessor">.js</span>
+│ │  jquery-<span class="hljs-number">3.1</span><span class="hljs-number">.1</span><span class="hljs-preprocessor">.slim</span><span class="hljs-preprocessor">.min</span><span class="hljs-preprocessor">.js</span>
+│ │  tether<span class="hljs-preprocessor">.min</span><span class="hljs-preprocessor">.js</span> 
+│ └─css
+│    bootstrap<span class="hljs-preprocessor">.min</span><span class="hljs-preprocessor">.css</span>
+│    main<span class="hljs-preprocessor">.css</span>
+└─views
+     especialidades<span class="hljs-preprocessor">.html</span>
+     formulario<span class="hljs-preprocessor">.html</span>    
+  server<span class="hljs-preprocessor">.js</span>
+  package<span class="hljs-preprocessor">.json</span></code></pre>
+
+<p>Ahora vamos a agregar un motor de templates que permitirá servir archivos html cuando el navegador (cliente) lo requiera.</p>
+
+<p>En esta ocasión utilizaremos swig, ejecutamos en la terminal. <br>
+<br>
+<code>consola</code></p>
+
+<pre class="prettyprint"><code class=" hljs brainfuck"><span class="hljs-comment">npm</span> <span class="hljs-comment">install</span> <span class="hljs-comment">swig</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">save</span></code></pre>
+
+<p>Ahora, agregamos este motor al proyecto agregando el siguiente código en el archivo server.js, esto nos permitirá mostrar contenido html en el navegador, aquí también damos al servidor la dirección de donde se encuentran los templates (archivos html) <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// REQUERIMIENTO DE MODULOS</span>
+...
+<span class="hljs-keyword">var</span> swig = <span class="hljs-built_in">require</span>(<span class="hljs-string">'swig'</span>);
+...
+<span class="hljs-comment">// CONFIGURACIONES</span>
+...
+<span class="hljs-comment">// Integracion del motor de templates swig</span>
+server.engine(<span class="hljs-string">'html'</span>,swig.renderFile);
+server.set(<span class="hljs-string">'view engine'</span>, <span class="hljs-string">'html'</span>);
+server.set(<span class="hljs-string">'views'</span>, __dirname + <span class="hljs-string">'/views'</span>);
+swig.setDefaults({cache: <span class="hljs-literal">false</span>});</code></pre>
+
+<p>Tener en cuenta que las partes de PETICIONES ( función server.get() ) e INICIAR SERVIDOR ( server.listen()) preferentemente queden en la parte inferior del código luego de todas las CONFIGURACIONES.</p>
+
+<p>Ahora cambiamos el comando send por el de render y enviamos el template especialidades.html <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// PETICIONES</span>
+
+<span class="hljs-comment">// Cuando exista una petición en el servidor  </span>
+server.get(<span class="hljs-string">'/'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req,res)</span>{</span>
+    res.render(<span class="hljs-string">'especialidades.html'</span>);
+});</code></pre>
+
+
+La localización de los templates del proyecto han sido indicadas en la configuración del template.
+
+Desde ahora cada vez se diga reiniciar el servidor asegurate que todo archivo este guardado, si el servidor esta corriendo se cancela con CTRL + C, se vuelve a ejecutar en consola `node server` y actualizar en el navegador en la dirección `localhost:8000`.
+
+Reiniciamos el servidor y actualizamos.
+
+El resultado no será el mismo que se visualizó al descargar el proyecto, esto se debe a que los archivos estáticos aún no se encuentran direccionados.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/sinestaticos.PNG">
+</p>
+
+
+
+<h2 id="archivos-estaticos">Archivos Estaticos</h2>
+
+<p>Agregamos la siguiente instrucción en el archivo server.js para direccionar los archivos estáticos <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// CONFIGURACIONES</span>
+...
+<span class="hljs-comment">// Seteo de dirección de carpeta de archivos estaticos</span>
+server.use(express.static(__dirname + <span class="hljs-string">'/public'</span>));</code></pre>
+
+<p>En el template especialidades.html cambiamos el direccionamiento de los archivos eliminando public <br>
+<br>
+<code>views/especialidades.html</code></p>
+
+<pre class="prettyprint"><code class="language-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"../public/css/bootstrap.min.css"</span> &gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"../public/css/main.css"</span> &gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-img-top "</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../public/img/frontend.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"Card image cap"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../public/js/jquery-3.1.1.slim.min.js"</span> &gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../public/js/tether.min.js"</span> &gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../public/js/bootstrap.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre>
+
+<p>Ahora solo serán de la siguiente manera <br>
+<br>
+<code>views/especialidades.html</code></p>
+
+<pre class="prettyprint"><code class="language-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/css/bootstrap.min.css"</span> &gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/css/main.css"</span> &gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-img-top "</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/img/frontend.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"Card image cap"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/js/jquery-3.1.1.slim.min.js"</span> &gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/js/tether.min.js"</span> &gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/js/bootstrap.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre>
+
+
+Detenemos y volvemos a correr el servidor y actualizamos el navegador y ahora ya podemos visualizar de manera correcta el template. 
+<br>
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/especialidades.PNG">
+</p>
+
+<p>Hasta este punto hemos servido archivos estáticos al navegador. Si leíste la introducción recordarás este gráfico. <br>
+ <br></p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/web_estatica.jpg">
+</p>
+
+<p><br>
+1. El navegador web solicita la página estática.  <br>
+2. El servidor localiza la página.  <br>
+3. El servidor Web envía la página al navegador solicitante. </p>
+
+<h2 id="servir-una-variable">Servir una variable</h2>
+
+<p>Ahora voy a mostrarte como agregar información al template desde el servidor, vamos a crear una variable llamada especialidad.</p>
+
+<p>Las variables es una nueva parte o seccion que se posicionara inicialmente, incluso antes de los requerimientos. <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// VARIABLES </span>
+...
+<span class="hljs-comment">// REQUERIMIENTO DE MODULOS</span>
+...
+<span class="hljs-comment">// CONFIGURACIONES</span>
+...
+<span class="hljs-comment">// PETICIONES</span>
+...
+<span class="hljs-comment">// INICIAR SERVIDOR</span>
+...</code></pre>
+
+<p><br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// VARIABLES </span>
+
+<span class="hljs-keyword">var</span> especialidad = <span class="hljs-string">'Backend'</span>;</code></pre>
+
+<p>Al momento de servir la información agregamos esta variable como parte de la información.</p>
+
+<p><br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// PETICIONES</span>
+
+<span class="hljs-comment">// Cuando exista una petición en el servidor  </span>
+server.get(<span class="hljs-string">'/'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req,res)</span>{</span>
+    res.render(<span class="hljs-string">'especialidades.html'</span>, { nombre:especialidad });
+});</code></pre>
+
+<p>Ahora en el archivo especialidades.html identificamos el lugar del título Especialidades y la cambiamos por el nombre de la variable con la que se está enviando, en este caso es nombre. Para identificar que es una variable la colocamos entre dos llaves.</p>
+
+<p>Toda la documentación de swig sobre variables la encuentras <a href="http://node-swig.github.io/swig-templates/docs/#variables">aquí</a>. <br>
+<br>
+<code>views/especialidades.html</code></p>
+
+<pre class="prettyprint"><code class="language-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-block"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-title"</span>&gt;</span>{{ nombre }}<span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+
+
+Cancelamos, volvemos a correr el servidor con node server y actualizamos el navegador.
+
+Ahora apreciamos que la palabra Especialidad ha desaparecido y en su lugar aparece el valor de la variable especialidad
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/variable.PNG">
+</p>
+
+<h2 id="servir-un-objeto">Servir un objeto</h2>
+
+<p>Pero no sólo tenemos que cambiar el nombre de la especialidad sino también la imagen, es decir, dos cualidades. Para esto vamos a crear un objeto de javascript que posee la siguiente sintaxis: <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// VARIABLES</span>
+
+<span class="hljs-keyword">var</span> especialidad = {
+        nombre: <span class="hljs-string">"BACKEND"</span>,
+        imagen: <span class="hljs-string">'backend.png'</span>   
+    };</code></pre>
+
+<p>Es una buena práctica que las variables sean declaradas inicialmente, incluso antes del requerimientos de módulos externos.</p>
+
+<p>Ahora no sólo estamos sirviendo el nombre sino el nombre del archivo de su correspondiente imagen. Por ello alteramos el nombre de la variable con la que se identificará en el template. <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// PETICIONES</span>
+
+<span class="hljs-comment">// Cuando exista una petición en el servidor  </span>
+server.get(<span class="hljs-string">'/'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req,res)</span>{</span>
+    res.render(<span class="hljs-string">'especialidades.html'</span>, { informacion:especialidad });
+});</code></pre>
+
+<p>En el template de especialidades cambiamos las variables de título y la dirección de la imagen. <br>
+<br>
+<code>views/especialidades.html</code></p>
+
+<pre class="prettyprint"><code class="language-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-img-top "</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/img/{{informacion.imagen}}"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"Card image cap"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-block"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-title"</span>&gt;</span>{{ informacion.nombre }}<span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+
+
+Cancelamos, volvemos a correr el servidor con node server y actualizamos el navegador.
+
+Apreciamos que la imagen ahora también cambia con el icono correspondiente a backend.
+<br>
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/objeto.PNG">
+</p>
+
+<h2 id="servir-un-array-de-objetos">Servir un array de objetos</h2>
+
+<p>Ahora como tenemos 5 especialidades vamos a crear un array con la información de ellas. <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// VARIABLES </span>
+<span class="hljs-keyword">var</span> especialidades = [  
+    {
+        nombre: <span class="hljs-string">'FRONTEND'</span>,
+        imagen: <span class="hljs-string">'frontend.png'</span>
+    },
+    {
+        nombre: <span class="hljs-string">'BACKEND'</span>,
+        imagen: <span class="hljs-string">'backend.png'</span>
+    },
+    {
+        nombre: <span class="hljs-string">'ELECTRONICA'</span>,
+        imagen: <span class="hljs-string">'electronica.png'</span>
+    },
+    {
+        nombre: <span class="hljs-string">'ANDROID'</span>,
+        imagen: <span class="hljs-string">'android.png'</span>
+    },
+    {
+        nombre: <span class="hljs-string">'ALGORITMOS'</span>,
+        imagen: <span class="hljs-string">'algoritmos.png'</span>
+    },
+];</code></pre>
+
+<p>Cambiamos el nombre de la variable a plural y colocamos categorías a la variable con la que va a ser identificada en el template. <br>
+<br>
+<code>server.js</code></p>
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-comment">// PETICIONES</span>
+
+<span class="hljs-comment">// Cuando exista una petición en el servidor  </span>
+server.get(<span class="hljs-string">'/'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req,res)</span>{</span>
+    res.render(<span class="hljs-string">'especialidades.html'</span>, { categorias:especialidades });
+});</code></pre>
+
+<p>En el template vamos a utilizar un bucle que hará el recorrido por el array de especialidades que agregamos. La sintaxis de este recorrido la encuentras en la documentación de <a href="http://node-swig.github.io/swig-templates/docs/#whitespace">swig</a>. <br>
+<br>
+<code>views/especialidades.html</code></p>
+
+<pre class="prettyprint"><code class="language-html hljs ">{% for categoria in categorias %}
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card m-2 "</span>&gt;</span> 
+        <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-img-top "</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/img/{{categoria.imagen}}"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"Card image cap"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-block"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"card-title"</span>&gt;</span>{{ categoria.nombre }}<span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"list-group list-group-flush"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"list-group-item"</span>&gt;</span>Nombre y Apellido<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+{% endfor %}</code></pre>
+
+
+Cancelamos, volvemos a correr el servidor con node server y actualizamos el navegador.
+
+Apreciamos que ahora aparecen las tres especialidades con sus respectivos íconos.
+<br>
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/buclefor.PNG">
+</p>
+
+<p>Con esto hemos creado una página dinámica que puede cambiar su presentación con la información que se le brinda en el servidor.</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NestorPlasencia/rm_images/master/web_dinamica.jpg">
+</p>
+
+<p><br>
+1. El navegador web solicita la página dinámica.  <br>
+2. El servidor web localiza la página y la envía al servidor de aplicaciones.  <br>
+3. El servidor de aplicaciones busca instrucciones en la página y la termina.  <br>
+4. El servidor de aplicaciones pasa la página terminada al servidor web.  <br>
+5. El servidor web envía la página finalizada al navegador solicitante. </p>
+
+<p>La interacción con base de datos la veremos la próxima semana. Los espero.</p>
